@@ -367,29 +367,29 @@ const AnswerGame = () => {
 
   const getRandomFeedback = (isCorrect) => {
     const correctResponses = [
-      "Răspuns corect! Felicitări!",
-      "Bine făcut!",
-      "Exact!",
-      "Ai răspuns corect!",
-      "Bravo!",
-      "Corect!",
-      "Răspunsul este corect!",
-      "Foarte bine!",
-      "Super!",
-      "Continuă tot așa!"
+      "Miracol medical!",
+      "Norocosule.",
+      "Cine ți-a șoptit?",
+      "Imposibil! Ai ghicit?",
+      "Azi e ziua ta norocoasă.",
+      "Nu mă așteptam la asta.",
+      "Ai calculator ascuns?",
+      "Uimitor. Chiar știi ceva!",
+      "Bravo, geniule!",
+      "Ai evoluat peste noapte?"
     ];
 
     const incorrectResponses = [
-      "Răspuns incorect.",
-      "Mai încearcă.",
-      "Nu este corect.",
-      "Din păcate, nu acesta este răspunsul.",
-      "Nu ai răspuns corect.",
-      "Încă puțin și vei reuși.",
-      "Aproape, dar nu este corect.",
-      "Poate data viitoare.",
-      "Nu este răspunsul corect.",
-      "Să încercăm următoarea întrebare."
+      "Faci mândru sistemul medical!",
+      "Impresionant. De prost.",
+      "Ai ratat vocația de clovn.",
+      "Radiații în creier?",
+      "Fizica nu-i prietena ta, nu?",
+      "Bravo! Ai omorât pacientul imaginar.",
+      "Ești radioactiv la creier?",
+      "Asta-i radioterapie sau ghicitori?",
+      "Așa, topește tumoarea și organele!",
+      "Ești sigur că ești la medicină?"
     ];
 
     const responses = isCorrect ? correctResponses : incorrectResponses;
@@ -435,15 +435,15 @@ const AnswerGame = () => {
           </div>
           <div className="card-content">
             <Alert type="info">
-              <p>Ai răspuns corect la {score} din {organData.length} întrebări. Felicitări!</p>
+              <p>Ai răspuns corect la {score} din {organData.length} întrebări. Impresionant... pentru un începător.</p>
             </Alert>
             {incorrectAnswers.length > 0 && (
               <div>
-                <h3>Răspunsuri incorecte:</h3>
+                <h3>Răspunsuri incorecte (lista rușinii):</h3>
                 <ul className="list">
                   {incorrectAnswers.map((item, index) => (
                     <li key={index} className="list-item">
-                      <strong>{item.organ}:</strong> Ai răspuns "{item.user}", dar răspunsul corect este "{Array.isArray(item.correct) ? item.correct.join('" sau "') : item.correct}".
+                      <strong>{item.organ}:</strong> Ai zis "{item.user}", dar era "{Array.isArray(item.correct) ? item.correct.join('" sau "') : item.correct}". Bravo, campionule!
                     </li>
                   ))}
                 </ul>
@@ -452,7 +452,7 @@ const AnswerGame = () => {
           </div>
           <div className="card-footer">
             <Button onClick={startNewGame} className="primary w-full">
-              Începe un joc nou
+              Încă o rundă de umilință?
             </Button>
           </div>
         </Card>
@@ -464,37 +464,37 @@ const AnswerGame = () => {
     <div className="container">
       <Card>
         <div className="card-header">
-          <h2 className="card-title">Mai bagă o fișă</h2>
+          <h2 className="card-title">Mai bagă și tu o fișă</h2>
         </div>
         <div className="card-content">
           <Alert type="info">
             <p>
               Includeți unitățile de măsură (Gy, cc). Nu contează spațiile sau literele mari/mici.
-              Puteți folosi "&lt;" sau "≤".
+              Poți folosi "&lt;" sau "≤". Dacă reușești, e un miracol!
             </p>
           </Alert>
           <div className="text-center">
-            <p>Scor: {score} / {questionCount - 1}</p>
+            <p>Scor: {score} / {questionCount - 1} (Chiar impresionant pentru tine!)</p>
           </div>
           {currentOrgan && (
             <div>
-              <p>Care este constrângerea de doză pentru <strong>{currentOrgan.organ}</strong>?</p>
+              <p>Care e constrângerea de doză pentru <strong>{currentOrgan.organ}</strong>? (Dacă știi...)</p>
               <Input
                 type="text"
                 value={userInput}
                 onChange={(e) => setUserInput(e.target.value)}
-                placeholder="Scrie aici răspunsul"
+                placeholder="Scrie aici (dacă poți)"
               />
               <div className="button-group">
                 <Button onClick={checkAnswer} className="primary" disabled={canProceed}>
-                  Verifică răspunsul
+                  Încearcă (și ratează)
                 </Button>
                 <Button onClick={showCorrectAnswer} className="secondary" disabled={canProceed}>
-                  Arată răspunsul
+                  Arată-mi (că oricum nu știu)
                 </Button>
                 {canProceed && (
                   <Button onClick={() => newQuestion()} className="success">
-                    Următoarea întrebare
+                    Următoarea tortură
                   </Button>
                 )}
               </div>
@@ -509,7 +509,7 @@ const AnswerGame = () => {
           )}
           {showAnswer && (
             <Alert type="info">
-              <p>Răspunsul corect: {Array.isArray(currentOrgan.constraint) 
+              <p>Răspunsul corect (pe care nu l-ai știut): {Array.isArray(currentOrgan.constraint) 
                 ? currentOrgan.constraint.join(' sau ')
                 : currentOrgan.constraint}</p>
             </Alert>
