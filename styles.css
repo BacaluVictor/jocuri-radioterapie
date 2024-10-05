@@ -98,6 +98,13 @@ h2, h3 {
   gap: 0.5rem;
 }
 
+/* Stiluri pentru grid-ul de constrângeri */
+.constraints-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
 /* Stiluri pentru elementele draggable/selectabile */
 .draggable-item {
   width: 150px;
@@ -134,13 +141,6 @@ h2, h3 {
 /* Ascundem organul din listă când este potrivit */
 .draggable-item.correct-match {
   display: none;
-}
-
-/* Stiluri pentru grid-ul de constrângeri */
-.constraints-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
 }
 
 /* Stiluri pentru zonele de drop/selectabile */
@@ -284,19 +284,48 @@ h2, h3 {
 
 /* Adaptabilitate pentru ecrane mici */
 @media (max-width: 768px) {
-  .column {
-    flex: 1 1 100%;
+  /* Organizăm grid-ul de organe în 3 coloane */
+  .organs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
   }
 
+  /* Organizăm grid-ul de constrângeri în 3 coloane */
+  .constraints-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+  }
+
+  /* Reducem dimensiunea casetelor pentru organe și constrângeri */
   .draggable-item, .drop-zone {
     width: 100%;
+    height: 50px; /* Ajustează înălțimea după necesități */
+    font-size: 0.8rem;
+    padding: 0.25rem;
+  }
+
+  /* Ajustăm marginile pentru separare între organe și constrângeri */
+  .column {
+    margin-bottom: 1rem;
+  }
+
+  /* Separăm vizual organele de constrângeri */
+  .column:first-child {
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 1rem;
+  }
+
+  .column:last-child {
+    padding-top: 1rem;
   }
 }
 
 @media (max-width: 480px) {
   .draggable-item, .drop-zone {
-    font-size: 1rem;
-    height: 70px;
+    font-size: 0.75rem;
+    height: 40px;
   }
 
   .text-2xl {
@@ -308,6 +337,6 @@ h2, h3 {
   }
 
   .constraint-item, .matched-organ {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
   }
 }
