@@ -463,7 +463,7 @@ const AnswerGame = () => {
             )}
           </div>
           <div className="card-footer">
-            <Button onClick={startNewGame} className="primary w-full">
+            <Button onClick={startNewGame} className="primary">
               Încă o rundă de umilință?
             </Button>
           </div>
