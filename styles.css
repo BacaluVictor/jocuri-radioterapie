@@ -50,56 +50,18 @@ h2, h3 {
 .columns {
   display: flex;
   flex-wrap: wrap;
+  gap: 1rem; /* Spațiu între coloane */
 }
 
 /* Stiluri pentru fiecare coloană */
 .column {
   flex: 1;
   padding: 0.5rem;
-  min-width: 0;
+  min-width: 200px; /* Lățime minimă pentru a evita coloanele prea înguste */
 }
 
-.mb-4 {
-  margin-bottom: 1rem;
-}
-
-.mb-2 {
-  margin-bottom: 0.5rem;
-}
-
-.mt-4 {
-  margin-top: 1rem;
-}
-
-.text-2xl {
-  font-size: 1.5rem;
-}
-
-.text-xl {
-  font-size: 1.25rem;
-}
-
-.font-bold {
-  font-weight: bold;
-}
-
-.font-semibold {
-  font-weight: 600;
-}
-
-.text-center {
-  text-align: center;
-}
-
-/* Stiluri pentru grid-ul de organe */
-.organs-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-/* Stiluri pentru grid-ul de constrângeri */
-.constraints-grid {
+/* Stiluri pentru grid-urile de organe și constrângeri */
+.organs-grid, .constraints-grid {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
