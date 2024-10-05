@@ -26,27 +26,39 @@ const Input = (props) => (
 
 /* Datele pentru organe și constrângeri */
 const organConstraintPairs = [
-  { organ: "Trunchi cerebral", constraint: "Dmax = 54 Gy (max 60 Gy dacă e necesar)" },
+  { organ: "Trunchi cerebral", constraint: "Dmax = 54 Gy; dacă e necesar se poate permite max 60 Gy" },
   { organ: "Creier", constraint: "Dmax <60 Gy" },
   { organ: "Chiasma optică, nervii optici", constraint: "Dmax ≤55 Gy" },
-  { organ: "Globi oculari", constraint: "Dmax <40 Gy" },
+  { organ: "Globi oculari", constraint: ["Dmax <40 Gy", "Dmean <30 Gy"] },
+  { organ: "Retina", constraint: "Dmax <50 Gy" },
   { organ: "Cohleea", constraint: "Dmean <45 Gy" },
   { organ: "Cristalin", constraint: "Dmax <5 Gy" },
   { organ: "Glanda pituitară (hipofiza)", constraint: "Dmean <36 Gy" },
-  { organ: "Hipocamp (pacienți tineri)", constraint: "Dmax ≤16 Gy" },
+  { organ: "Hipocamp (pacienți tineri)", constraint: ["D100% <9 Gy", "Dmax ≤16 Gy"] },
   { organ: "Constrictori faringieni", constraint: "Dmean <50 Gy" },
   { organ: "Măduvă", constraint: "Dmax <50 Gy" },
-  { organ: "Parotidă bilateral", constraint: "Dmean <25 Gy" },
-  { organ: "Esofag", constraint: "Dmean <34 Gy" },
+  { organ: "Parotidă bilateral", constraint: ["Dmean <25 Gy", "unilateral <20 Gy"] },
+  { organ: "Glanda submandibulară", constraint: "Dmean <11 Gy" },
+  { organ: "Mandibulă", constraint: "Dmax <65 Gy" },
+  { organ: "Laringe", constraint: "Dmean <45 Gy" },
+  { organ: "Tiroidă", constraint: "V45Gy ≤45%" },
+  { organ: "Esofag", constraint: "mean dose <34 Gy" },
   { organ: "Plex brahial", constraint: "Dmax <66 Gy" },
-  { organ: "Plămâni", constraint: "V20 ≤20%" },
-  { organ: "Cord", constraint: "V30 ≤30%" },
-  { organ: "Ficat", constraint: "Dmean <42 Gy" },
-  { organ: "Rinichi bilateral", constraint: "V20 <32%, unilateral Dmean <18 Gy" },
-  { organ: "Capete femurale", constraint: "V40 <15%; Cap și col femural: 42 Gy" },
-  { organ: "Intestin subțire (bowel bag)", constraint: "V15 <120 cc" },
-  { organ: "Vezică Urinară", constraint: ["Dmax = 65 Gy", "Dmax <65 Gy"] },
-  { organ: "Bulb penian", constraint: "Dmean 95% din organ <50 Gy" }
+  { organ: "Plămâni", constraint: ["V20 ≤20%", "Dmean <20 Gy"] },
+  { organ: "Cord", constraint: ["Dmean ≤30 Gy", "V30 ≤30%"] },
+  { organ: "Coronare și VS", constraint: "Dmax <5 Gy" },
+  { organ: "Sâni", constraint: "Dmean <4 Gy" },
+  { organ: "Ficat", constraint: ["mean dose <30-32 Gy", "mean dose <42 Gy"] },
+  { organ: "Stomac", constraint: "D100 <50 Gy" },
+  { organ: "Splină", constraint: "Dmean <9 Gy" },
+  { organ: "Rinichi bilateral", constraint: ["V20 <32%", "unilateral Dmean <18 Gy", "V18 <33% fiecare"] },
+  { organ: "Rect", constraint: "V50 <50%" },
+  { organ: "Capete femurale", constraint: ["V40 <15%", "Cap și col femural: 42 Gy"] },
+  { organ: "Intestin subțire (bowel „bag”)", constraint: ["V15 <120 cm³", "V45 <195 cm³"] },
+  { organ: "Vezică Urinară", constraint: "Dmax = 65 Gy" },
+  { organ: "Bulb penian", constraint: "Dmean 95% din organ <50 Gy" },
+  { organ: "Cornee", constraint: "Dmean <26 Gy" },
+  { organ: "Glanda lacrimală", constraint: "Dmean <40 Gy" }
 ];
 
 /* Funcție pentru a amesteca elementele dintr-o listă */
@@ -313,8 +325,6 @@ const DragAndDropGame = () => {
 
 /* Jocul "Mai bagă o fișă" */
 const AnswerGame = () => {
-  // Codul pentru jocul "Mai bagă o fișă"
-
   const [organData, setOrganData] = useState([]);
   const [currentOrgan, setCurrentOrgan] = useState(null);
   const [userInput, setUserInput] = useState('');
@@ -361,6 +371,8 @@ const AnswerGame = () => {
       .replace(/<=/g, '<')
       .replace(/\s+/g, '')
       .replace(/gy/g, 'gy')
+      .replace(/cm³/g, 'cm^3')
+      .replace(/cm\^3/g, 'cm^3')
       .replace(/cc/g, 'cc')
       .replace(/[.,]/g, '');
   };
