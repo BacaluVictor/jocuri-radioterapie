@@ -1,52 +1,22 @@
 <!DOCTYPE html>
 <html lang="ro">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Joc Radioterapie</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <title>Jocuri Radioterapie</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:,">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+  <div id="root"></div>
 
-<div class="container">
-    <h1>Joc Radioterapie</h1>
+  <!-- Scripturi Externe -->
+  <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/react-beautiful-dnd@13.1.0/dist/react-beautiful-dnd.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-    <div class="game-container">
-        <h2>1. Drag and Drop</h2>
-        <div class="organs" id="organs">
-            <div class="card" draggable="true">Trunchi Cerebral</div>
-            <div class="card" draggable="true">Creier</div>
-            <div class="card" draggable="true">Chiasma Optică</div>
-            <div class="card" draggable="true">Globi Oculari</div>
-            <div class="card" draggable="true">Retina</div>
-            <div class="card" draggable="true">Cohleea</div>
-            <div class="card" draggable="true">Glanda Pituitară</div>
-            <div class="card" draggable="true">Măduvă</div>
-            <div class="card" draggable="true">Plămâni</div>
-            <div class="card" draggable="true">Glanda Submandibulară</div>
-        </div>
-        <div class="drop-zone" id="drop-zone">
-            <h3>Plasează organele aici</h3>
-        </div>
-    </div>
-
-    <div class="game-container">
-        <h2>2. Mai bagă o fișă</h2>
-        <div class="constraints">
-            <div class="card">Dmax = 54 Gy; dacă e necesar, se poate permite max 60 Gy</div>
-            <div class="card">Dmax < 60 Gy</div>
-            <div class="card">Dmax ≤ 55 Gy</div>
-            <div class="card">Dmax < 40 Gy, Dmean < 30 Gy</div>
-            <div class="card">Dmax < 50 Gy</div>
-            <div class="card">Dmean < 45 Gy</div>
-            <div class="card">Dmean < 36 Gy</div>
-            <div class="card">Dmean < 11 Gy</div>
-            <div class="card">V20 ≤ 20%, Dmean < 20 Gy</div>
-        </div>
-    </div>
-
-</div>
-
-<script src="script.js"></script>
+  <!-- Scriptul propriu -->
+  <script type="text/babel" src="script.js"></script>
 </body>
 </html>
